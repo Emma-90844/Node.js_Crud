@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//Dataconnection
+//Mongo DB connection
 mongoose.connect('mongodb://localhost:27017/EmployeeDB',  { useNewUrlParser: true } , (err) => {
     if(!err){
         console.log('MongoDB Connection Successful');
@@ -8,3 +8,4 @@ mongoose.connect('mongodb://localhost:27017/EmployeeDB',  { useNewUrlParser: tru
     else{console.log('Error connected to the Database');
 }
 }); 
+require('./employee.model');
