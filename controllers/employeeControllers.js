@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Employee = mongoose.model("Employee");
+
 
 router.get('/', (req, res) => {
     res.render('employee/addOrEdit', {
@@ -13,6 +13,7 @@ router.post('/', (req, res) => {
 });
 
 //FUNCTION TO INSERT DATA INTO THE DATABASE
+const Employee = mongoose.model("Employee");
 function insertRecord(req, res){
     const employee = new Employee();
     employee.fullName =  req.body.fullName;
@@ -22,14 +23,25 @@ function insertRecord(req, res){
     employee.save((err, doc) => {
         if(!err) res.redirect('employee/list');
         else {
+            
             console.log('Error during record insertation'+ err);
         }
     });
 }
-
+//DISPLAY THE RECORD
 router.get('/list', (req, res) => {
-    res.json('from list');
+    Employee.find((err, docs) => {
+        if(!err){
+            res.render('employee/list', {
+                list: docs
+            });
+        } else {
+            console.log('Error in retriving employee list' + err);
+        }
+    });
 });
+
+
 
 module.exports = router;
 

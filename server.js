@@ -17,7 +17,7 @@ const homeController = require('./controllers/homeController');
 
 
 app.use(bodyparser.urlencoded({ extended: true}));
-app.use(bodyparser.json());
+app.use(bodyparser.json()); 
 
 app.use('/employee', employeeController);
 app.use('/home', homeController);

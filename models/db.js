@@ -9,3 +9,7 @@ mongoose.connect('mongodb://localhost:27017/EmployeeDB',  { useNewUrlParser: tru
 }
 }); 
 require('./employee.model');
+
+
+
+//Implemented form validation in the schema
